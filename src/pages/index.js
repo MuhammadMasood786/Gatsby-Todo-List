@@ -1,5 +1,27 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import gql from 'graphql-tag'
+import { useMutation, useQuery } from '@apollo/client'
 
-export default function Home() {
-  return <div>Hello world!</div>
+
+const GET_TODOS = gql
+  `
+{
+   todos {
+        id,
+        task,
+       status
+      }
 }
+`
+
+const ADD_TODO = gql
+  `
+{
+  mutation addTodo(task:String!){
+    addTodo(task:$task){
+      task
+    }
+  }
+}
+`
+
